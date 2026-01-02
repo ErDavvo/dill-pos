@@ -23,7 +23,6 @@ app.get('/menu-staff-pazzo', (req, res) => {
 app.get('/menu', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'menu-client.html'));
 });
-
 app.get('/menu-api', async (req, res) => {
   const dishes = await Dish.find();
   res.json(dishes);
@@ -45,10 +44,10 @@ app.get('/menu-dashboard-staff', async (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use((req, res, next) => {
+
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'menu-client.html'));
 });
-
 
 app.listen(process.env.PORT || 3000, () =>
   console.log('✅ Server avviato')
