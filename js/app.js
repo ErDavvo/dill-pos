@@ -1,27 +1,22 @@
-// app.js
 
-// Stato globale
 let currentUser = "";
 let activeTable = null;
 let tables = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], bancone: [] };
 let salesRecord = [];
 
-// ------------------------ LOGIN ------------------------
 function login(user) {
     currentUser = user;
     document.getElementById('screen-login').classList.add('hidden');
     document.getElementById('main-app').classList.remove('hidden');
     document.getElementById('user-info').innerText = "OPERATORE: " + user;
     renderTables();
-    loadMenu(); // carica menu.json da menu.js
+    loadMenu();
 }
 
-// ------------------------ TAVOLI ------------------------
 function renderTables() {
     const grid = document.getElementById('table-grid');
     grid.innerHTML = '';
 
-    // Tavoli numerici
     for (let i = 1; i <= 7; i++) {
         const occupied = tables[i].length > 0;
         const div = document.createElement('div');
@@ -31,7 +26,6 @@ function renderTables() {
         grid.appendChild(div);
     }
 
-    // Bancone
     const banconeOccupied = tables.bancone.length > 0;
     const bancone = document.createElement('div');
     bancone.className = `table-box ${banconeOccupied ? 'active-order' : ''}`;
@@ -40,7 +34,6 @@ function renderTables() {
     grid.appendChild(bancone);
 }
 
-// ------------------------ POS ------------------------
 function openPOS(n) {
     activeTable = n;
     document.getElementById('screen-tables').style.display = 'none';
@@ -57,7 +50,6 @@ function showTables() {
     renderTables();
 }
 
-// ------------------------ AGGIUNGI ARTICOLO ------------------------
 function addItem(name, price) {
     if (!activeTable) return;
     tables[activeTable].push({ name, price });
@@ -85,7 +77,6 @@ function removeItem(idx) {
     renderReceipt();
 }
 
-// ------------------------ CHECKOUT ------------------------
 function checkout() {
     if (!activeTable || tables[activeTable].length === 0) return;
     const total = tables[activeTable].reduce((sum, item) => sum + item.price, 0);
@@ -99,7 +90,6 @@ function checkout() {
     showTables();
 }
 
-// ------------------------ DASHBOARD ------------------------
 function showDashboard() {
     document.getElementById('screen-tables').style.display = 'none';
     document.getElementById('screen-pos').style.display = 'none';
@@ -120,7 +110,6 @@ function showDashboard() {
     document.getElementById('dash-total').innerText = "€ " + grandTotal.toLocaleString();
 }
 
-// ------------------------ RICERCA ------------------------
 function filterMenu() {
     const query = document.getElementById('search').value.toLowerCase();
     document.querySelectorAll('.item-card').forEach(card => {
@@ -131,7 +120,6 @@ function filterMenu() {
     });
 }
 
-// ------------------------ LOGOUT ------------------------
 function logout() {
     location.reload();
 }
@@ -160,6 +148,6 @@ function addNewDish() {
     .then(res => res.json())
     .then(() => {
         closeAddDishModal();
-        loadMenu(); // 🔄 ricarica menu dal DB
+        loadMenu();
     });
 }

@@ -1,13 +1,10 @@
-// menu.js
 
 let fullMenu = {};
 
-// 🔄 Carica menu dal server
 async function loadMenu() {
   const res = await fetch('http://localhost:3000/menu');
   const dishes = await res.json();
 
-  // Raggruppa per categoria
   fullMenu = {};
   dishes.forEach(dish => {
     if (!fullMenu[dish.category]) {
@@ -55,8 +52,6 @@ function renderMenu() {
     }
 }
 
-
-// 🔍 Ricerca rapida
 function filterMenu() {
   const q = document.getElementById('search').value.toLowerCase();
   const container = document.getElementById('menu-content');
@@ -88,5 +83,4 @@ function filterMenu() {
   }
 }
 
-// Carica menu all’avvio
 document.addEventListener('DOMContentLoaded', loadMenu);
