@@ -1,7 +1,7 @@
 let fullMenu = {};
 
 async function loadMenu() {
-    const res = await fetch('http://localhost:3000/menu');
+    const res = await fetch('/menu-clienti');
     const dishes = await res.json();
 
     fullMenu = {};

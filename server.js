@@ -7,9 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(
-  process.env.MONGO_URI, 
-);
+mongoose.connect(process.env.MONGO_URI);
 
 const DishSchema = new mongoose.Schema({
   name: String,
@@ -18,12 +16,23 @@ const DishSchema = new mongoose.Schema({
 });
 const Dish = mongoose.model('Dish', DishSchema);
 
-app.get('/menu', async (req, res) => {
+// PAGINA STAFF POS
+app.get('/menu-staff-pazzo', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// PAGINA MENU CLIENT
+app.get('/menu', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'menu-client.html'));
+});
+
+// API MENU CLIENT
+app.get('/menu-api', async (req, res) => {
   const dishes = await Dish.find();
   res.json(dishes);
 });
 
-app.post('/menu', async (req, res) => {
+app.post('/menu-api', async (req, res) => {
   const { name, price, category } = req.body;
   if (!name || !price || !category) {
     return res.status(400).json({ error: 'Dati mancanti' });
@@ -32,10 +41,16 @@ app.post('/menu', async (req, res) => {
   await dish.save();
   res.json({ success: true });
 });
+
+app.get('/menu-dashboard-staff', async (req, res) => {
+  const dishes = await Dish.find();
+  res.json(dishes);
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'menu-client.html'));
 });
 
 app.listen(process.env.PORT || 3000, () =>
