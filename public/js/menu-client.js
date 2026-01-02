@@ -1,7 +1,7 @@
 let fullMenu = {};
 
 async function loadMenu() {
-    const res = await fetch('/menu-clienti');
+    const res = await fetch('/menu-api');
     const dishes = await res.json();
 
     fullMenu = {};
