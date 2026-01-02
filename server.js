@@ -7,9 +7,9 @@ app.use(cors());
 app.use(express.json());
 
 // 🔗 MongoDB
-mongoose.connect(
-  'mongodb+srv://erdavvo:y4tv8ExP4ATszTNF@cluster0.glxac4g.mongodb.net/?appName=Cluster0',
-);
+    mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB connesso'))
+  .catch(err => console.error(err));
 
 // 📦 Schema
 const DishSchema = new mongoose.Schema({
@@ -42,6 +42,5 @@ app.post('/menu', async (req, res) => {
 
 // -----------------------------------------
 
-app.listen(3000, () =>
-  console.log('✅ Server avviato su http://localhost:3000')
-);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server avviato su http://localhost:${PORT}`));
