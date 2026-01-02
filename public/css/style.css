@@ -7,7 +7,7 @@
     --danger: #e74c3c;
     --item-bg: #2d2d2d;
     --item-text: #ffffff;
-    --item-hover-bg: rgba(212,175,55,0.1); /* hover dorato */
+    --item-hover-bg: rgba(212,175,55,0.1); 
 }
 
 
@@ -18,7 +18,7 @@
     --item-bg: #e0e0e0;
     --item-text: #2f3542;
     --gold: #b8860b;
-    --item-hover-bg: rgba(184,134,11,0.15); /* hover chiaro dorato */
+    --item-hover-bg: rgba(184,134,11,0.15); 
 }
 
 .item-card:hover {
@@ -41,7 +41,6 @@ body {
     display: none !important;
 }
 
-/* ---------------- LOGIN ---------------- */
 #screen-login {
     position: fixed;
     inset: 0;
@@ -84,7 +83,6 @@ body {
     background: var(--gold);
 }
 
-/* ---------------- TOP BAR ---------------- */
 .top-bar {
     padding: 10px 20px;
     background: rgba(0,0,0,0.5);
@@ -128,7 +126,6 @@ body {
     box-shadow: 0 0 12px rgba(231, 76, 60, 0.6);
 }
 
-/* ---------------- TAVOLI ---------------- */
 #screen-tables {
     padding: 40px;
     text-align: center;
@@ -161,7 +158,6 @@ body {
     box-shadow: 0 0 15px var(--gold);
 }
 
-/* ---------------- POS ---------------- */
 #screen-pos {
     display: none;
     height: calc(100vh - 60px);
@@ -196,7 +192,6 @@ body {
     color: white;
 }
 
-/* Categorie e prodotti */
 .category-title {
     color: var(--gold);
     border-bottom: 1px solid var(--gold);
@@ -214,7 +209,6 @@ body {
     margin-bottom: 30px;
 }
 
-/* ---------------- ITEM CARD MODERNE ---------------- */
 .item-card {
     background: var(--item-bg);
     color: var(--item-text);
@@ -222,7 +216,7 @@ body {
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.1);
     cursor: pointer;
-    height: 100px; /* più spazio per prezzo e + */
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -240,7 +234,6 @@ body {
     box-shadow: 0 6px 15px rgba(212, 175, 55, 0.4);
 }
 
-/* Nome piatto */
 .item-card .name {
     font-size: 15px;
     font-weight: bold;
@@ -249,7 +242,6 @@ body {
     text-overflow: ellipsis;
 }
 
-/* Prezzo in basso a sinistra */
 .item-card .price {
     color: var(--gold);
     font-size: 14px;
@@ -259,7 +251,6 @@ body {
     left: 15px;
 }
 
-/* Pulsante + in basso a destra */
 .item-card::after {
     content: "+";
     position: absolute;
@@ -284,7 +275,6 @@ body {
 }
 
 
-/* Receipt */
 .receipt-area {
     flex: 0 0 400px;
     background: #f8f9fa;
@@ -318,7 +308,6 @@ body {
     font-weight: bold;
 }
 
-/* Footer e bottoni speciali */
 .footer {
     padding: 20px;
 }
@@ -373,7 +362,6 @@ body {
     background: #2ecc71;
 }
 
-/* Dashboard */
 #screen-dashboard {
     display: none;
     padding: 40px;
@@ -398,7 +386,7 @@ body {
     padding: 12px;
     border: 1px solid #ddd;
     text-align: left;
-}/* Modal generale */
+}
 .modal {
     position: fixed;
     inset: 0;

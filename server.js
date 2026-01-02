@@ -1,21 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-    mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB connesso'))
-  .catch(err => console.error(err));
+mongoose.connect(
+  process.env.MONGODB_URI, 
+);
 
 const DishSchema = new mongoose.Schema({
   name: String,
   price: Number,
   category: String
 });
-
 const Dish = mongoose.model('Dish', DishSchema);
 
 app.get('/menu', async (req, res) => {
@@ -28,12 +28,16 @@ app.post('/menu', async (req, res) => {
   if (!name || !price || !category) {
     return res.status(400).json({ error: 'Dati mancanti' });
   }
-
   const dish = new Dish({ name, price, category });
   await dish.save();
   res.json({ success: true });
 });
+app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server avviato su http://localhost:${PORT}`));
+app.listen(process.env.PORT || 3000, () =>
+  console.log('✅ Server avviato')
+);
