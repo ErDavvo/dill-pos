@@ -1,0 +1,440 @@
+:root {
+    --bg: #121212;
+    --panel: #1e1e1e;
+    --text: #ffffff;
+    --gold: #d4af37;
+    --accent: #27ae60;
+    --danger: #e74c3c;
+    --item-bg: #2d2d2d;
+    --item-text: #ffffff;
+    --item-hover-bg: rgba(212,175,55,0.1); /* hover dorato */
+}
+
+
+.light-theme {
+    --bg: #f4f4f9;
+    --panel: #ffffff;
+    --text: #2f3542;
+    --item-bg: #e0e0e0;
+    --item-text: #2f3542;
+    --gold: #b8860b;
+    --item-hover-bg: rgba(184,134,11,0.15); /* hover chiaro dorato */
+}
+
+.item-card:hover {
+    border-color: var(--gold);
+    background: var(--item-hover-bg);
+    box-shadow: 0 0 10px var(--gold);
+}
+
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ---------------- LOGIN ---------------- */
+#screen-login {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    background: var(--panel);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid var(--gold);
+    text-align: center;
+}
+
+.user-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-user {
+    padding: 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    background: #333;
+    color: white;
+    transition: 0.2s;
+}
+
+.btn-user:hover {
+    background: var(--gold);
+}
+
+/* ---------------- TOP BAR ---------------- */
+.top-bar {
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gold);
+}
+
+.btn-top {
+    padding: 10px 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: all 0.25s ease;
+}
+
+.btn-top:hover {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+}
+
+.btn-top:active {
+    transform: scale(0.96);
+}
+
+.logout {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.logout:hover {
+    background: var(--danger);
+    color: white;
+    box-shadow: 0 0 12px rgba(231, 76, 60, 0.6);
+}
+
+/* ---------------- TAVOLI ---------------- */
+#screen-tables {
+    padding: 40px;
+    text-align: center;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+.table-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.table-box {
+    background: var(--panel);
+    padding: 60px 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid #444;
+    font-size: 22px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.table-box.active-order {
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 15px var(--gold);
+}
+
+/* ---------------- POS ---------------- */
+#screen-pos {
+    display: none;
+    height: calc(100vh - 60px);
+}
+
+.pos-container {
+    display: flex;
+    height: 100%;
+}
+
+.menu-area {
+    flex: 2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: var(--bg);
+}
+
+.menu-top {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.menu-top input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--gold);
+    background: var(--panel);
+    color: white;
+}
+
+/* Categorie e prodotti */
+.category-title {
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+    margin: 25px 0 15px 0;
+    padding-bottom: 5px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+/* ---------------- ITEM CARD MODERNE ---------------- */
+.item-card {
+    background: var(--item-bg);
+    color: var(--item-text);
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    height: 100px; /* più spazio per prezzo e + */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.item-card:hover {
+    border-color: var(--gold);
+    background: var(--item-hover-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Nome piatto */
+.item-card .name {
+    font-size: 15px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Prezzo in basso a sinistra */
+.item-card .price {
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+}
+
+/* Pulsante + in basso a destra */
+.item-card::after {
+    content: "+";
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    background: var(--gold);
+    color: #000;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.item-card:hover::after {
+    transform: scale(1.2);
+    background: #ffd700;
+}
+
+
+/* Receipt */
+.receipt-area {
+    flex: 0 0 400px;
+    background: #f8f9fa;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #ddd;
+}
+
+.receipt-header {
+    background: #222;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.receipt-list {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+}
+
+.receipt-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #ccc;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+/* Footer e bottoni speciali */
+.footer {
+    padding: 20px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.btn-add {
+    padding: 15px 30px;
+    background: var(--gold);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.btn-add:hover {
+    background: #ffd700;
+}
+
+.btn-close {
+    background: none;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+.btn-close:hover {
+    background: white;
+    color: black;
+}
+
+.btn-checkout {
+    width: 100%;
+    padding: 20px;
+    background: var(--accent);
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-checkout:hover {
+    background: #2ecc71;
+}
+
+/* Dashboard */
+#screen-dashboard {
+    display: none;
+    padding: 40px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+.dashboard-panel {
+    background: var(--panel);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    color: black;
+}
+
+.report-table th, .report-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}/* Modal generale */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: var(--panel);
+    padding: 30px;
+    border-radius: 12px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--gold);
+}
+
+.modal-content input, .modal-content select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--gold);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}

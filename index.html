@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DILLÀ ROMA - POS ELITE</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="screen-login">
+    <div class="login-card">
+        <h1>DILLÀ ROMA</h1>
+        <p>Gestione Ordini v4.0</p>
+        <div class="user-grid">
+            <button class="btn-user" onclick="login('Boss')">Boss</button>
+            <button class="btn-user" onclick="login('Valsugana')">Valsugana</button>
+            <button class="btn-user" onclick="login('Tonno🐟')">Tonno 🐟</button>
+            <button class="btn-user" onclick="login('Picche')">Picche</button>
+            <button class="btn-user" onclick="login('Ebreo✡️')">Ebreo✡️</button>
+            <button class="btn-user" onclick="login('Luciano')">Luciano</button>
+            <button class="btn-user" onclick="login('Cuvullo con mestruazioni')">Cuvullo con mestruazioni</button>
+        </div>
+    </div>
+</div>
+
+<div id="main-app" class="hidden">
+    <!-- TOP BAR -->
+    <div class="top-bar">
+    <span id="user-info"></span>
+    <div>
+        <button class="btn-top" onclick="openAddDishModal()">➕ AGGIUNGI PIATTO</button>
+        <button class="btn-top" onclick="showDashboard()">📊 REPORT</button>
+        <button class="btn-top logout" onclick="logout()">LOGOUT</button>
+    </div>
+</div>
+
+<!-- MODAL AGGIUNGI PIATTO -->
+<div id="add-dish-modal" class="modal hidden">
+    <div class="modal-content">
+        <h2>Aggiungi Nuovo Piatto</h2>
+        <label>Nome Piatto:</label>
+        <input type="text" id="new-dish-name" placeholder="Esempio: Risotto al Tartufo">
+        
+        <label>Prezzo (€):</label>
+        <input type="number" id="new-dish-price" placeholder="Esempio: 45">
+        
+        <label>Categoria:</label>
+        <select id="new-dish-category">
+            <option value="ANTIPASTI">ANTIPASTI</option>
+            <option value="PRIMI PIATTI">PRIMI PIATTI</option>
+            <option value="SECONDI PIATTI">SECONDI PIATTI</option>
+            <option value="DESSERT">DESSERT</option>
+            <option value="BOTTIGLIE DI VINO">BOTTIGLIE DI VINO</option>
+            <option value="CALICI DI VINO">CALICI DI VINO</option>
+        </select>
+
+        <div class="modal-buttons">
+            <button class="btn-add" onclick="addNewDish()">Aggiungi</button>
+            <button class="btn-close" onclick="closeAddDishModal()">Chiudi</button>
+        </div>
+    </div>
+</div>
+
+
+    <!-- SALA TAVOLI -->
+    <div id="screen-tables">
+        <h2>SALA PRINCIPALE (7 TAVOLI)</h2>
+        <div class="table-grid" id="table-grid"></div>
+    </div>
+
+    <!-- POS -->
+    <div id="screen-pos">
+        <div class="pos-container">
+            <div class="menu-area" id="menu-container">
+                <div class="menu-top">
+                    <button class="btn-add" onclick="addItem('Coperto', 15)">+ AGGIUNGI COPERTO (15€)</button>
+                    <input type="text" id="search" placeholder="Cerca veloce..." onkeyup="filterMenu()">
+                </div>
+                <div id="menu-content"></div>
+            </div>
+
+            <div class="receipt-area">
+                <div class="receipt-header">
+                    <h3 id="pos-table-title"></h3>
+                    <button class="btn-close" onclick="showTables()">X</button>
+                </div>
+                <div class="receipt-list" id="receipt-list"></div>
+                <div class="footer">
+                    <div class="total-row">
+                        <span>TOTALE</span>
+                        <span>€ <span id="total-val">0</span></span>
+                    </div>
+                    <button class="btn-checkout" onclick="checkout()">CHIUDI E INCASSA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="screen-dashboard">
+        <button class="btn-top" onclick="showTables()">⬅ TORNA AI TAVOLI</button>
+        <div class="dashboard-panel">
+            <h1>REPORT VENDITE GIORNALIERO</h1>
+            <h2 id="dash-total">€ 0</h2>
+            <table class="report-table">
+                <thead><tr><th>Ora</th><th>Tavolo</th><th>Operatore</th><th>Totale</th></tr></thead>
+                <tbody id="report-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>
